@@ -28,6 +28,7 @@ type conf struct {
 	DBPassword  string `json:"db_password"`
 	DBName      string `json:"db_name"`
 	HTTPAddress string `json:"http_address"`
+	FileDBPath  string `json:"file_db_path"`
 	MongoURI    string
 	Log         Log `json:"log"`
 }
@@ -48,7 +49,7 @@ func init() {
 	DefaultConfig.MongoURI = mongoURI
 
 	if "file" == DefaultConfig.Log.Output {
-		f, err := os.OpenFile(logFile,os.O_RDWR|os.O_CREATE, 0666)
+		f, err := os.OpenFile(logFile, os.O_RDWR|os.O_CREATE, 0666)
 		if nil != err {
 			panic(err)
 		}

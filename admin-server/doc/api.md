@@ -64,13 +64,17 @@
 # 4. 文件服务
 
 ## 4.1. 上传
-* URI：/post/file/upload/{file_hash}/{mime}
-	+ mime: 文件类型。请按照http协议规定的文件类型名填写。把其中/转换成-。例如：image/jpeg变成 image-jpeg
+* URI：/post/file/upload
+	
+* Inputs 按照提交表单的方式进行提交
+    + mime: 文件类型。请按照http协议规定的文件类型名填写。把其中/转换成-。例如：image/jpeg变成 image-jpeg
 	+ file_hash: 文件sha1值，160位，20字节。十六进制表示，用于检查文件是否完整。如果有已经有相同hash值的文件，不会重复存储，会引用同一个文件。
-* Inputs
-```
-文件字节流
-```
+	+ sutra_name: 专辑名称
+	+ item_number：专辑项目编号
+	+ item_name： 专辑项目名称
+	+ item_suffix: 专辑项目文件后缀名
+	+ file：专辑项目文件。
+
 
 * Outputs
 ```
@@ -79,14 +83,29 @@
 }
 ```
 
+* 例子
+```
+curl -X POST http://localhost:9001/post/file/upload/abc123/application-json \
+  -F "file=@./aa.txt" \
+  -F "sutra_name=论语" \
+  -F "item_number=3" \
+  -F "item_name=不食嗟来之食" \
+  -F "item_suffix=mp3" \
+  -F "file_hash=a8bc8" \
+  -F "mime=image-jpeg" \
+  -H "Content-Type: multipart/form-data"
+```
+
 ## 4.2. 下载
-* URI：/get/file/download/{height}/{width}
+* URI：/get/file/download
 	+ 下载图片时可以指定高度和宽度。TODO：第一期先不做，也就说只会下载原图
 	+ TODO： 对常用大小的图片会进行缓存。
 * Inputs
 ```
 {
 	string file_id - 文件ID
+	int64 height - 下载图片时可以指定高度,单位像素
+	int64 width - 下载图片时可以指定宽度,单位像素
 }
 ```
 
@@ -95,3 +114,9 @@
 文件字节流
 ```
 
+* 例子
+```
+curl -H "Content-Type:application/json" -H "Data_Type:msg" -X POST \
+--data '{"file_id":"0a8bc","heigth":800,"width":400}' \
+http://localhost:9001/get/file/download > tmp.txt
+```

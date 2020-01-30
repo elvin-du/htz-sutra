@@ -6,24 +6,6 @@ import (
 	"strconv"
 )
 
-type HeightOrHash string
-
-func (h HeightOrHash) IsHeight() bool {
-	return false
-}
-
-func (h HeightOrHash) IsHash() bool {
-	return false
-}
-
-func (h HeightOrHash) ToHash() string {
-	return ""
-}
-
-func (h HeightOrHash) ToHeight() int64 {
-	return -1
-}
-
 func ExtractPage(ctx *gin.Context) util.Page {
 	index, err := strconv.Atoi(ctx.Param("index"))
 	if err != nil {

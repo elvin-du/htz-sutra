@@ -4,6 +4,7 @@
   "db_password": "12345678",
   "db_name": "htz_sutra",
   "http_address": ":9001",
+  "file_db_path": "./static",
   "log": {
     "level": "debug",
     "output": "file"

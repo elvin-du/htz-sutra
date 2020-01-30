@@ -1,6 +1,7 @@
 package main
 
 import (
+	_ "htz/sutra/search"
 	"log"
 	"htz/sutra/common/database"
 	"htz/sutra/api-server/config"

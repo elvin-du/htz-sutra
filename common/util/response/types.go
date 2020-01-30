@@ -31,6 +31,6 @@ func InternalServerError(err interface{}) Response {
 	return New(InternalServerErrorCode, nil, err)
 }
 
-func Error(code ReturnCode, error interface{}) Response {
+func Fail(code ReturnCode, error interface{}) Response {
 	return New(code, nil, error)
 }
