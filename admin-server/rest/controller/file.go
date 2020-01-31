@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"htz/sutra/admin-server/config"
-	"htz/sutra/admin-server/rest/server"
+	"htz/sutra/common/server"
 	"htz/sutra/common/util/response"
 	"io/ioutil"
 	"log"

@@ -23,14 +23,14 @@ type Log struct {
 }
 
 type conf struct {
-	DBAddress  string `json:"db_address"`
-	DBUser     string `json:"db_user"`
-	DBPassword string `json:"db_password"`
-	DBName     string `json:"db_name"`
-	FileDBPath string `json:"file_db_path"`
-	HTTPAddress string `json:"file_db_path"`
-	MongoURI   string
-	Log        Log `json:"log"`
+	DBAddress   string `json:"db_address"`
+	DBUser      string `json:"db_user"`
+	DBPassword  string `json:"db_password"`
+	DBName      string `json:"db_name"`
+	FileDBPath  string `json:"file_db_path"`
+	HTTPAddress string `json:"http_address"`
+	MongoURI    string
+	Log         Log `json:"log"`
 }
 
 func init() {

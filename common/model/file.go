@@ -4,6 +4,8 @@ import (
 	"context"
 	"fmt"
 	log "github.com/sirupsen/logrus"
+	"htz/sutra/common/types"
+
 	//"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"htz/sutra/common/database"
@@ -23,7 +25,7 @@ type FileModel struct {
 	collection *mongo.Collection
 }
 
-func (fm *FileModel) InsertBlock(f *File) (string, error) {
+func (fm *FileModel) InsertBlock(f *types.File) (string, error) {
 	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
 	res, err := fm.collection.InsertOne(ctx, f)
 	if nil != err {

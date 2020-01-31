@@ -1,12 +1,12 @@
 {
   "db_address": "localhost:27017",
-  "db_user": "htz_sutra",
-  "db_password": "12345678",
+  "db_user": "htzsutraadmin",
+  "db_password": "htzsutra123",
   "db_name": "htz_sutra",
-  "http_address": ":9001",
+  "http_address": "127.0.0.1:9200",
   "file_db_path": "./static",
   "log": {
     "level": "debug",
-    "output": "file"
+    "output": "std"
   }
 }

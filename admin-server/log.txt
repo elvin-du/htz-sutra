@@ -1,0 +1,1 @@
+[36mINFO[0m[0000] mongoURI: mongodb://htzsutraadmin:htzsutra123@localhost:27017 

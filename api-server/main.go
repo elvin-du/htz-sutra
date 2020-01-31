@@ -1,11 +1,11 @@
 package main
 
 import (
-	_ "htz/sutra/search"
+	_ "htz/sutra/search-server/search"
 	"log"
 	"htz/sutra/common/database"
 	"htz/sutra/api-server/config"
-	"htz/sutra/api-server/rest/server"
+	"htz/sutra/common/server"
 	_ "htz/sutra/api-server/rest/controller"
 )
 
@@ -15,5 +15,5 @@ func init()  {
 
 func main() {
 	database.DefaultDB.Start(config.DefaultConfig.MongoURI)
-	server.DefaultServer.Start()
+	server.DefaultServer.Start(config.DefaultConfig.HTTPAddress)
 }

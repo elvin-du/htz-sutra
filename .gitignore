@@ -1,6 +1,12 @@
 .idea
 .DS_Store
 
+api-server/go_build_htz_sutra_api_server_darwin
+api-server/api-server
+api-server/log.txt
 admin-server/admin-server
 admin-server/static
 admin-server/log.txt
+search-server/log.txt
+search-server/search-server
+htz_sutra_search_engine_db
