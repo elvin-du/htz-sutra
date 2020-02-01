@@ -16,7 +16,7 @@ type Sutra struct {
 	Cover       string `json:"cover"`
 	Description string `json:"description"`
 	PlayedCount uint64 `json:"played_count"`
-	ItemTotal   uint32 `json:"item_tokal"`
+	ItemTotal   uint32 `json:"item_total"`
 	CreatedAt   int64  `json:"created_at"`
 }
 

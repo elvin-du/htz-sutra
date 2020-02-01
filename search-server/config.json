@@ -1,5 +1,6 @@
 {
   "http_address": "127.0.0.1:9300",
+  "search_engine_db_path": "./htz/sutra/search/db",
   "log": {
     "level": "debug",
     "output": "std"

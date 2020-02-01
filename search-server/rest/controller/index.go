@@ -11,6 +11,7 @@ import (
 func init() {
 	server.DefaultServer.RegisterRoute("POST", "/post/doc", defaultSearcher.IndexDoc)
 	server.DefaultServer.RegisterRoute("POST", "/get/search", defaultSearcher.Search)
+	server.DefaultServer.RegisterRoute("POST", "/delete/doc", defaultSearcher.Delete)
 }
 
 var (
@@ -22,7 +23,7 @@ type Searcher struct{}
 func (*Searcher) IndexDoc(ctx *gin.Context) {
 	item := types.SutraItem{}
 	if err := ctx.ShouldBindJSON(&item); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"json error": err.Error()})
+		ctx.JSON(http.StatusBadRequest, gin.H{"json parameter error": err.Error()})
 		return
 	}
 
@@ -33,21 +34,33 @@ func (*Searcher) IndexDoc(ctx *gin.Context) {
 	itemIndex.Original = item.Original
 	itemIndex.Title = item.Title
 
-	search.Index(&itemIndex, []string{"黄庭禅", "庄子"})
-	ctx.JSON(http.StatusOK, gin.H{"msg": "index success"})
+	search.Index(&itemIndex)
+	ctx.JSON(http.StatusOK, gin.H{"msg": "add index success"})
 }
 
 func (*Searcher) Search(ctx *gin.Context) {
-	keyMap := struct {
+	keyParameter := struct {
 		Key          string `json:"key"`
 		OutputOffset int    `json:"output_offset"`
 		MaxOutputs   int    `json:"max_outputs"`
 	}{}
-	if err := ctx.ShouldBindJSON(&keyMap); nil != err {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	if err := ctx.ShouldBindJSON(&keyParameter); nil != err {
+		ctx.JSON(http.StatusBadRequest, gin.H{"json parameter error": err.Error()})
 		return
 	}
 
-	results := search.Search(keyMap.Key, keyMap.OutputOffset, keyMap.MaxOutputs)
+	results := search.Search(keyParameter.Key, keyParameter.OutputOffset, keyParameter.MaxOutputs)
 	ctx.JSON(http.StatusOK, gin.H{"results": results})
+}
+
+func (*Searcher) Delete(ctx *gin.Context) {
+	param := struct {
+		ID string `json:"id"`
+	}{}
+	if err := ctx.ShouldBindJSON(&param); nil != err {
+		ctx.JSON(http.StatusBadRequest, gin.H{"json parameter error": err.Error()})
+		return
+	}
+	search.Remove(param.ID)
+	ctx.JSON(http.StatusOK, gin.H{"msg": "remove index success"})
 }

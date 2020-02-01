@@ -8,8 +8,7 @@ import (
 
 const (
 	configPath = "./config.json"
-
-	logFile = "./log.txt"
+	logFile    = "./log.txt"
 )
 
 var (
@@ -22,8 +21,9 @@ type Log struct {
 }
 
 type conf struct {
-	HTTPAddress string `json:"http_address"`
-	Log         Log `json:"log"`
+	HTTPAddress        string `json:"http_address"`
+	SearchEngineDBPath string `json:"search_engine_db_path"`
+	Log                Log `json:"log"`
 }
 
 func init() {
